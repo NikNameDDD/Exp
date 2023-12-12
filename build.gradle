@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.9.6'
+    id "org.gradle.test-retry" version "1.4.1"
+}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.0'
+    implementation 'io.appium:java-client:7.0.0'
+    implementation 'org.projectlombok:lombok:1.18.24'
+    implementation('io.qameta.allure:allure-okhttp3:2.14.0')
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.0'
+
+    // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.1.1'
+
+    testImplementation 'org.aspectj:aspectjweaver:1.9.5'
+    testImplementation 'io.qameta.allure:allure-junit5:2.12.1'
+    testImplementation 'io.qameta.allure:allure-commandline:2.12.1'
+    testImplementation 'io.qameta.allure:allure-assertj:2.12.1'
+    testImplementation 'io.qameta.allure:allure-rest-assured:2.12.1'
+    testImplementation 'io.qameta.allure:allure-java-commons:2.12.1'
+    testImplementation 'io.qameta.allure:allure-selenide:2.12.1'
+
+}
+
+test {
+    useJUnitPlatform()
+//    retry {
+//        maxRetries = 2
+//        failOnPassedAfterRetry = true
+//    }
+}
